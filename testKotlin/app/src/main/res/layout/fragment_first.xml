@@ -16,7 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:gravity="center"
             android:text="@string/imie"
             android:textAlignment="center" />
@@ -25,12 +26,16 @@
             android:id="@+id/imie_input"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:maxWidth="480dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:layout_marginEnd="12dp"
             android:autofillHints="name"
             android:hint="@string/imieHint"
-            android:inputType="text" />
+            android:inputType="text"
+            app:helperText="Required"
+            app:errorEnabled="true"/>
 
     </LinearLayout>
 
@@ -43,21 +48,28 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:gravity="center"
             android:text="@string/nazwisko"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            app:helperText="Required"
+            app:errorEnabled="true"/>
 
         <EditText
             android:id="@+id/nazwisko_input"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:layout_marginEnd="12dp"
             android:autofillHints="name"
             android:hint="@string/nazwiskoHint"
-            android:inputType="text" />
+            android:inputType="text"
+            android:maxWidth="488dp"
+            app:errorEnabled="true"
+            app:helperText="Required" />
     </LinearLayout>
 
     <LinearLayout
@@ -69,7 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:gravity="center"
             android:text="@string/lOcen"
             android:textAlignment="center" />
@@ -79,7 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:maxWidth="488dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:layout_marginEnd="12dp"
             android:autofillHints=""
             android:hint="@string/lOcenHint"
@@ -87,12 +102,14 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_first"
+        android:id="@+id/button_check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/next"
+        android:text="@string/grades"
         android:layout_marginStart="12dp"
+        android:maxWidth="320dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"/>
+        android:layout_marginEnd="12dp"
+        android:visibility="invisible"/>
 
 </LinearLayout>
