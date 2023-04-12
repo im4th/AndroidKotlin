@@ -25,6 +25,7 @@
     <string name="five" translatable="false">5</string>
     <string name="srednia">Oblicz średnią</string>
     <string name="placeholder">Placeholder</string>
+    <string name="your_srednia_label">Twoja średnia to: </string>
     <string-array name="classes">
         <item>Angielski</item>
         <item>Polski</item>

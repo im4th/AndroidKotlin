@@ -22,13 +22,10 @@ class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
@@ -81,11 +78,25 @@ class FirstFragment : Fragment() {
             }
         }
         binding.buttonCheck.setOnClickListener {
-            val bundle = bundleOf("liczba_ocen" to binding.locenInput.text.toString())
+            val bundle = bundleOf(
+                "liczba_ocen" to binding.locenInput.text.toString(),
+                "imie" to binding.imieInput.text.toString(),
+                "nazwisko" to binding.nazwiskoInput.text.toString()
+            )
             val fragment = SecondFragment()
             fragment.arguments = bundle
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
 
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val test = this.arguments?.getString("srednia_ocen").toString()
+        val tekst = context?.getString(R.string.your_srednia_label)
+        binding.sredniaOcen.text = tekst + " " + test
+        if (this.arguments?.getString("srednia_ocen") != null) {
+            binding.sredniaOcen.visibility = View.VISIBLE
         }
     }
 
@@ -119,15 +130,13 @@ class FirstFragment : Fragment() {
     private fun validateName(): String? {
         return if (binding.imieInput.text.isNotEmpty()) {
             null
-        } else
-            "Error"
+        } else "Error"
     }
 
     private fun validateSurname(): String? {
         return if (binding.nazwiskoInput.text.isNotEmpty()) {
             null
-        } else
-            "Error"
+        } else "Error"
     }
 
     private fun showButton() {

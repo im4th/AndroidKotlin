@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="102dp"
-        app:layout_constraintBottom_toTopOf="@+id/obliczSrednia"
+        app:layout_constraintBottom_toTopOf="@+id/oblicz_srednia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,7 +19,7 @@
         tools:listitem="@layout/wiersz_oceny" />
 
     <Button
-        android:id="@+id/obliczSrednia"
+        android:id="@+id/oblicz_srednia"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="@string/srednia"

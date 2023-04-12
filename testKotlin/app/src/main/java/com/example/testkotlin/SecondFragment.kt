@@ -4,23 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testkotlin.databinding.FragmentSecondBinding
 
-
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class SecondFragment : Fragment() {
 
     private lateinit var listaOcen: RecyclerView
     private var mDane: ArrayList<ModelOceny> = arrayListOf()
     private var _binding: FragmentSecondBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -43,10 +39,20 @@ class SecondFragment : Fragment() {
             mDane.add(ModelOceny(classes[i], 5))
         }
         listaOcen.adapter = AdapterTablicy(mDane)
+        binding.obliczSrednia.setOnClickListener{
+            val bundle2 = bundleOf("srednia_ocen" to obliczSrednia(mDane).toString())
+            val fragment = FirstFragment()
+            fragment.arguments = bundle2
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment, bundle2)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun obliczSrednia(oceny: List<ModelOceny>): Double {
+        return (oceny.sumOf { x -> x.ocena }.toDouble() / oceny.size.toDouble())
     }
 }

@@ -101,6 +101,18 @@
             android:inputType="number" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/sredniaOcen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:gravity="center"
+        android:text=""
+        android:textAlignment="center"
+        android:visibility="gone"/>
+
     <Button
         android:id="@+id/button_check"
         android:layout_width="match_parent"
