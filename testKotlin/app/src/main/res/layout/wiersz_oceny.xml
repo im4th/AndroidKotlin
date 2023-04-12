@@ -9,7 +9,7 @@
         android:id="@+id/nazwa_oceny"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nazwa"
+        android:text="@string/placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/radio_group_grades"
         app:layout_constraintHorizontal_bias="0.061"
