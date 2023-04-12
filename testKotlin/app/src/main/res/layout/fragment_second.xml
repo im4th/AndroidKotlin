@@ -6,22 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
-    <TextView
-        android:id="@+id/textview_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_ocen_rv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="102dp"
+        app:layout_constraintBottom_toTopOf="@+id/obliczSrednia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:listitem="@layout/wiersz_oceny" />
 
     <Button
-        android:id="@+id/button_second"
+        android:id="@+id/obliczSrednia"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/previous"
+        android:layout_height="48dp"
+        android:text="@string/srednia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintTop_toBottomOf="@+id/lista_ocen_rv"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,9 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.testkotlin.databinding.FragmentFirstBinding
 
 
@@ -15,7 +17,7 @@ import com.example.testkotlin.databinding.FragmentFirstBinding
  */
 class FirstFragment : Fragment() {
     companion object {
-        const val ButtonState = "ButtonState" // const key to save/read value from bundle
+        const val ButtonState = "ButtonState"
     }
 
     private var _binding: FragmentFirstBinding? = null
@@ -36,16 +38,17 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val text = context?.getString(R.string.errorGradeNotInAScope)
+        val text2 = context?.getString(R.string.errorMissingText)
 
         if (savedInstanceState?.getString(ButtonState) == "Visible") {
             binding.buttonCheck.visibility = View.VISIBLE
         } else {
             binding.buttonCheck.visibility = View.INVISIBLE
         }
+
         binding.locenInput.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                val text = "Niepoprawna liczba ocen"
-                val text2 = "Nie może być puste"
                 if (binding.locenInput.text.isNotEmpty()) {
                     val grades = binding.locenInput.text.toString().toInt()
                     if (!((grades <= 15) and (grades >= 5))) {
@@ -62,8 +65,8 @@ class FirstFragment : Fragment() {
         binding.imieInput.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 if (binding.imieInput.text.isEmpty()) {
-                    binding.imieInput.error = "Nie może być puste"
-                    Toast.makeText(context, "Nie może być puste", Toast.LENGTH_SHORT).show()
+                    binding.imieInput.error = text2
+                    Toast.makeText(context, text2, Toast.LENGTH_SHORT).show()
                 }
                 showButton()
             }
@@ -71,13 +74,18 @@ class FirstFragment : Fragment() {
         binding.nazwiskoInput.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 if (binding.nazwiskoInput.text.isEmpty()) {
-                    binding.nazwiskoInput.error = "Nie może być puste"
-                    Toast.makeText(context, "Nie może być puste", Toast.LENGTH_SHORT).show()
+                    binding.nazwiskoInput.error = text2
+                    Toast.makeText(context, text2, Toast.LENGTH_SHORT).show()
                 }
                 showButton()
             }
         }
         binding.buttonCheck.setOnClickListener {
+            val bundle = bundleOf("liczba_ocen" to binding.locenInput.text.toString())
+            val fragment = SecondFragment()
+            fragment.arguments = bundle
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
+
         }
     }
 
