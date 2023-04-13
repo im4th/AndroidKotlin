@@ -1,6 +1,8 @@
 package com.example.testkotlin
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -90,13 +92,29 @@ class FirstFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
-        val test = this.arguments?.getString("srednia_ocen").toString()
-        val tekst = context?.getString(R.string.your_srednia_label)
-        binding.sredniaOcen.text = tekst + " " + test
         if (this.arguments?.getString("srednia_ocen") != null) {
+            binding.sredniaOcen.text =
+                context?.getString(R.string.your_srednia_label) + " " + String.format(
+                    "%.2f", this.arguments?.getString("srednia_ocen").toString().toDouble()
+                )
             binding.sredniaOcen.visibility = View.VISIBLE
+            binding.imieInput.text = this.arguments?.getString("imie").toString().toEditable()
+            binding.nazwiskoInput.text =
+                this.arguments?.getString("nazwisko").toString().toEditable()
+            binding.locenInput.text =
+                this.arguments?.getString("liczba_ocen").toString().toEditable()
+            binding.buttonCheck.visibility = View.VISIBLE
+            if (this.arguments?.getString("srednia_ocen").toString().toDouble() > 3.0) {
+                binding.buttonCheck.text = context?.getString(R.string.congratulations)
+                buttonExit("Gratulacje!")
+            } else {
+                binding.buttonCheck.text = context?.getString(R.string.unfortunate)
+                buttonExit("Warunek!")
+            }
+
         }
     }
 
@@ -144,6 +162,15 @@ class FirstFragment : Fragment() {
             binding.buttonCheck.visibility = View.VISIBLE
         } else {
             binding.buttonCheck.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+
+    private fun buttonExit(exitText: String) {
+        binding.buttonCheck.setOnClickListener {
+            Toast.makeText(context, exitText, Toast.LENGTH_SHORT).show()
+            activity?.finishAffinity()
         }
     }
 }

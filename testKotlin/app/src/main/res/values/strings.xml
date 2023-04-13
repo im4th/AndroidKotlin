@@ -26,6 +26,8 @@
     <string name="srednia">Oblicz średnią</string>
     <string name="placeholder">Placeholder</string>
     <string name="your_srednia_label">Twoja średnia to: </string>
+    <string name="congratulations">Brawo zdałeś użytkowniku!</string>
+    <string name="unfortunate">Nie zdałeś kolego</string>
     <string-array name="classes">
         <item>Angielski</item>
         <item>Polski</item>

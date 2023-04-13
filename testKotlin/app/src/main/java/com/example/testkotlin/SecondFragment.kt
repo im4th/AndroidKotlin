@@ -39,8 +39,13 @@ class SecondFragment : Fragment() {
             mDane.add(ModelOceny(classes[i], 5))
         }
         listaOcen.adapter = AdapterTablicy(mDane)
-        binding.obliczSrednia.setOnClickListener{
-            val bundle2 = bundleOf("srednia_ocen" to obliczSrednia(mDane).toString())
+        binding.obliczSrednia.setOnClickListener {
+            val bundle2 = bundleOf(
+                "srednia_ocen" to obliczSrednia(mDane).toString(),
+                "liczba_ocen" to this.arguments?.getString("liczba_ocen").toString(),
+                "imie" to this.arguments?.getString("imie"),
+                "nazwisko" to this.arguments?.getString("nazwisko").toString()
+            )
             val fragment = FirstFragment()
             fragment.arguments = bundle2
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment, bundle2)
